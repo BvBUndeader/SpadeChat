@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS messages (
+    id SERIAL UNIQUE PRIMARY KEY,
+    chatroom_id INT REFERENCES chatrooms(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id) ON DELETE SET NULL,
+    content TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active INT DEFAULT 1
+);
