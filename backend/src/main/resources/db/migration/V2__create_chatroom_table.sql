@@ -1,12 +1,14 @@
 CREATE TABLE IF NOT EXISTS chatrooms (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) UNIQUE NOT NULL,
     is_active INT DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS chatroom_members (
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    chatroom_id INT REFERENCES chatrooms(id) ON DELETE CASCADE,
-    role VARCHAR(10) CHECK (role IN ('OWNER', 'ADMIN', 'MEMBER')),
-    PRIMARY KEY (user_id, chatroom_id)
+    user_id INT NOT NULL,
+    chatroom_id INT NOT NULL,
+    role VARCHAR(10) NOT NULL,
+    PRIMARY KEY (chatroom_id, user_id),
+    FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
