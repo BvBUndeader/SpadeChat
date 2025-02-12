@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ChatroomRepo extends JpaRepository<Chatroom, Integer> {
-    List<Chatroom> findActiveChatrooms(int isActive);
-    Chatroom findByNameAndActive(String name, int isActive);
+    List<Chatroom> findByIsActive(int isActive);
+    Chatroom findByNameAndIsActive(String name, int isActive);
 }

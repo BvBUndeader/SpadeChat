@@ -13,6 +13,6 @@ import java.util.List;
 public interface ChatroomMemberRepo extends JpaRepository<ChatroomMember, ChatMemberComposite> {
     List<ChatroomMember> findByChatroomId(Chatroom chatroom);
     ChatroomMember findByChatroomIdAndUserId(Chatroom chatroom, User user);
-    boolean userInChatroomExists(Chatroom chatroom, User user);
+    boolean existsByChatroomIdAndUserId(Chatroom chatroom, User user);
     List<ChatroomMember> findByUserId(User user);
 }
