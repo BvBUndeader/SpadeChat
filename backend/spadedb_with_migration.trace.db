@@ -1,0 +1,3 @@
+2025-02-14 23:00:56.233530+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "ROLE CHARACTER VARYING(10)": "'ADMINISTRATOR' (13)"; SQL statement:
+update chatroom_members set role=? where chatroom_id=? and user_id=? [22001-232]

@@ -1,0 +1,592 @@
+{
+	"info": {
+		"_postman_id": "da724b4d-e518-4fca-8850-767e9d5d53a7",
+		"name": "SpadeChat API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39143219"
+	},
+	"item": [
+		{
+			"name": "User Calls",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User by Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/users/username/maddhater",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users",
+								"username",
+								"maddhater"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"goshko\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"ClowncoreStrive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "CRUD API calls for the User entitiy"
+		},
+		{
+			"name": "Chatroom stuff",
+			"item": [
+				{
+					"name": "Create chatroom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"balista_space\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/chatrooms?creatorId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms"
+							],
+							"query": [
+								{
+									"key": "creatorId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to chatroom - OWNER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/users/4?requesterId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"users",
+								"4"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to chatroom - ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/users/5?requesterId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"users",
+								"5"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to chatroom - MEMBER - FAIL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/users/6?requesterId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"users",
+								"6"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Admin to a member",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/users/3/assign-admin?requesterId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"users",
+								"3",
+								"assign-admin"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rename chatroom - pass",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "LooLooLand\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/name-change?requesterId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"name-change"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rename chatroom - fail",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "LooLooLand2",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4/name-change?requesterId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4",
+								"name-change"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Chatroom - Pass",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/6?requesterId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"6"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Chatroom - Fail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/chatrooms/4?requesterId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"chatrooms",
+								"4"
+							],
+							"query": [
+								{
+									"key": "requesterId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message stuff",
+			"item": [
+				{
+					"name": "Send message in chatroom - Pass",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatroomId\": 4,\r\n    \"userId\": 2,\r\n    \"content\": \"Hey everyone!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message in chatroom - Fail - Chatroom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatroomId\": 5,\r\n    \"userId\": 2,\r\n    \"content\": \"Hey everyone!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message in chatroom - Fail - User Nonexistent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatroomId\": 4,\r\n    \"userId\": 7,\r\n    \"content\": \"Hey everyone!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send message in chatroom - Fail - User not in Chatroom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatroomId\": 4,\r\n    \"userId\": 6,\r\n    \"content\": \"Hey everyonez!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Chatroom Messages - Pass",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Chatroom Messages - Fail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/messages/chatroom/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"messages",
+								"chatroom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

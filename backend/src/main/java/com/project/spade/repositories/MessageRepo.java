@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface MessageRepo extends JpaRepository<Message, Integer> {
-    List<Message> findAllByChatroomIdAndIsActive(Chatroom chatroom, int isActive);
+    List<Message> findAllByChatroomIdAndIsActive(int chatroomId, int isActive);
     List<Message> findAllMessagesByUserIdAndIsActive(User user, int isActive);
-    List<Message> findAllByUserIdAndChatroomIdAndIsActive(Chatroom chatroom, User user, int isActive);
+    List<Message> findAllByUserIdAndChatroomIdAndIsActive(int userId,int chatroomId, int isActive);
+
+
 }

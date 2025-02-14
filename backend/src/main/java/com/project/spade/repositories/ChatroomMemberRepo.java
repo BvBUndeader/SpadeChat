@@ -11,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface ChatroomMemberRepo extends JpaRepository<ChatroomMember, ChatMemberComposite> {
-    List<ChatroomMember> findByChatroomId(Chatroom chatroom);
-    ChatroomMember findByChatroomIdAndUserId(Chatroom chatroom, User user);
-    boolean existsByChatroomIdAndUserId(Chatroom chatroom, User user);
-    List<ChatroomMember> findByUserId(User user);
+    List<ChatroomMember> findByChatroomId(int chatroomId);
+    ChatroomMember findByChatroomIdAndUserId(int chatroomId, int userId);
+    boolean existsByChatroomIdAndUserId(int chatroomId, int userId);
+    List<ChatroomMember> findByUserId(int userId);
 }

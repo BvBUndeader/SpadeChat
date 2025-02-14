@@ -2,6 +2,7 @@ package com.project.spade.services;
 
 import com.project.spade.dtos.UserDTO;
 import com.project.spade.entities.User;
+import com.project.spade.exceptions.ConflictActionException;
 import com.project.spade.mappers.UserMapper;
 import com.project.spade.repositories.UserRepo;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class UserService {
 
     public UserDTO createUser(UserDTO userDTO){
         if(userRepo.existsByUsername(userDTO.getUsername())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already taken");
+            throw new ConflictActionException("Username already exists");
         }
 
         User user = userMapper.toEntity(userDTO);
@@ -39,6 +40,12 @@ public class UserService {
 
     public Optional<UserDTO> getSingleUser(int id){
         Optional<User> wrappedUser = Optional.ofNullable(userRepo.findByIdAndIsActive(id, 1));
+
+        return wrappedUser.map(userMapper::toDto);
+    }
+
+    public Optional<UserDTO> getUserByUsername(String username){
+        Optional<User> wrappedUser = Optional.ofNullable(userRepo.findByUsernameAndIsActive(username, 1));
 
         return wrappedUser.map(userMapper::toDto);
     }

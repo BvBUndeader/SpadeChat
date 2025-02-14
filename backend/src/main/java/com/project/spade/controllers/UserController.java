@@ -1,6 +1,7 @@
 package com.project.spade.controllers;
 
 import com.project.spade.dtos.UserDTO;
+import com.project.spade.exceptions.ConflictActionException;
 import com.project.spade.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,13 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO){
 
-        UserDTO createdUser = this.userService.createUser(userDTO);
+        try{
+            UserDTO createdUser = this.userService.createUser(userDTO);
+        }
+        catch (ConflictActionException ex){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        }
+//        UserDTO createdUser = this.userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully.");
     }
 
@@ -39,8 +46,19 @@ public class UserController {
     public ResponseEntity<?> getSingleUser(@PathVariable int id){
         Optional<UserDTO> responseUser = this.userService.getSingleUser(id);
 
-        if(responseUser == null){
-            return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.NOT_FOUND);
+        if(responseUser.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user found");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseUser);
+    }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username){
+        Optional<UserDTO> responseUser = this.userService.getUserByUsername(username);
+
+        if(responseUser.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user with such name found");
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseUser);
