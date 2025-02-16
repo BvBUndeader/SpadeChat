@@ -2,14 +2,14 @@
     <h1 class="h1">Spade Chat</h1>
 
     <div class="container">
-        <h2>Please log in</h2>
+        <h2>Log In</h2>
 
         <input v-model="loginUsername" placeholder="Enter username" />
         <br>
         <button @click="loginUser">Login</button>
 
         <br>
-        <h2>First time? Please register</h2>
+        <h2>First time? Register</h2>
 
         <input v-model="registerUsername" placeholder="Enter username">
         <br>
@@ -46,6 +46,11 @@ export default{
 
 
     const registerUser = async () => {
+        if(!registerUsername.value.trim()){
+            errorMessage.value = 'Username field cannot be empty';
+            return;
+        }
+        
         try{
             await UserService.register(registerUsername.value);
             router.push(`/spadechat/${registerUsername.value}`);
